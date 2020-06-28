@@ -1,0 +1,19 @@
+<div class="list-group container">
+  <div *ngFor="let doctor of doctors">
+
+    <div href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+      <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1"><span href="mailto:#">Dr.</span>{{doctor.name}}</h5>
+
+        <small class="text-muted">Available <span>{{doctor.availabilty}}</span></small>
+      </div>
+      <p class="mb-1">{{doctor.specialization}}</p>
+      <p class="mb-1">{{doctor.experience}}<span> years of Experience Overall</span></p>
+      <small
+        class="text-muted"><strong>{{doctor.city}}</strong><span><strong>,{{doctor.hospitalName}}</strong></span></small>
+      <div>
+        <small class="text-muted"><span>$</span><span>{{doctor.fee}}</span><span> Consulation Fee</span></small>
+      </div>
+    </div>
+  </div>
+</div>

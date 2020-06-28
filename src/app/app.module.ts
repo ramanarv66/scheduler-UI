@@ -46,6 +46,7 @@ import { AvailableEffects } from 'src/app/core/redux/effects/availablity.effects
 import { AvailbilityFacade } from './core/redux/facade/availability.facade';
 import { SharedService } from './shared/shared.service';
 import { HttpService } from './core/services/http.service';
+import { AvailabilityComponent } from './components/availability/availability.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,7 +57,8 @@ import { HttpService } from './core/services/http.service';
     LoginComponent,
     LogoutComponent,
     RegisterComponent,
-    BookedAppointmentsComponent
+    BookedAppointmentsComponent,
+    AvailabilityComponent
   ],
   imports: [
     MatFormFieldModule, MatInputModule, MatDatepickerModule, MatTooltipModule,

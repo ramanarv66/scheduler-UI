@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
       if (this.user.username === this.user.password) {
         this.shared.successLogin = true;
         this.invalidLogin = false;
-        this.router.navigate(['/doctor'])
+        this.router.navigate(['/avai'])
       } else {
         this.shared.successLogin = false;
         this.invalidLogin = true;

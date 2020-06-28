@@ -41,8 +41,20 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
-      <a class="nav-item nav-link" routerLinkActive="active" routerLink="/doctor"
-        *ngIf="shared.successLogin">Availability</a>
+      <!-- <a class="nav-item nav-link" routerLinkActive="active" routerLink="/doctor"
+        *ngIf="shared.successLogin">Availability</a> -->
+
+      <li class="nav-item dropdown" *ngIf="shared.successLogin">
+        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          Availability
+        </a>
+
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" (click)="onClickAllAvailability()">Availibilty</a>
+          <div class="dropdown-item" (click)="onClickMe()">Available Tomorrow</div>
+        </div>
+      </li>
       <a class="nav-item nav-link" routerLinkActive="active" routerLink="/appointment" *ngIf="shared.successLogin">Book
         Appointment</a>
       <a class="nav-item nav-link" routerLinkActive="active" routerLink="/bappointment"
