@@ -45,6 +45,7 @@ import { AvailableEffects } from 'src/app/core/redux/effects/availablity.effects
 
 import { AvailbilityFacade } from './core/redux/facade/availability.facade';
 import { SharedService } from './shared/shared.service';
+import { HttpService } from './core/services/http.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -63,7 +64,6 @@ import { SharedService } from './shared/shared.service';
     ,
     BrowserModule,
     FlatpickrModule,
-    AvailableEffects,
     DemoModule,
     EffectsModule,
     DemoUtilsModule,
@@ -82,7 +82,7 @@ import { SharedService } from './shared/shared.service';
     NgbModule,
     NgbModalModule
   ],
-  providers: [CanDeactiveGuard, DatePipe, AvailbilityFacade, SharedService],
+  providers: [CanDeactiveGuard, DatePipe, AvailbilityFacade, SharedService,HttpService],
 
   // bootstrap: [DemoComponent]
   bootstrap: [AppComponent]
