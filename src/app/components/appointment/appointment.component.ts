@@ -79,7 +79,7 @@ export class AppointmentComponent {
   appointment: Appointment = new Appointment();
   doctotNames = ['Dr.John', 'Dr.David', 'Dr.Andrew'];
   selectedDoctor = "Dr.Ramana";
-  constructor(public shared: SharedService, private snackBar: MatSnackBar,private availabilityService: SharedService, private availbilityFacade: AvailbilityFacade) {
+  constructor(public shared: SharedService, private snackBar: MatSnackBar, private availabilityService: SharedService, private availbilityFacade: AvailbilityFacade) {
     const currentYear = new Date().getFullYear();
     this.minDate = new Date();
     this.maxDate = new Date(currentYear, 11, 31);
@@ -121,7 +121,7 @@ export class AppointmentComponent {
 
   }
   selectedDate(type: string, event: MatDatepickerInputEvent<Date>) {
-
+    this.showSlots = true;
     if (this.slotSelectedDate === event.value.getDate()) {
       this.appointment.date = event.value;
       // this.appointment.date.toLocaleDateString()
