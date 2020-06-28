@@ -40,5 +40,11 @@ export class SharedService {
     this.availbiltyFacade.getBookedAppointments();
   }
 
+  bookAppointment1(bookAppointmentRequest: BookAppointmentRequest) {
+
+    this.availbiltyFacade.bookAppointments(bookAppointmentRequest);
+
+  }
+
 
 }

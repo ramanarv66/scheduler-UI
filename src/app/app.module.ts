@@ -1,5 +1,5 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 import {
   MatDatepickerModule
 
@@ -63,7 +63,9 @@ import { SharedService } from './shared/shared.service';
     ,
     BrowserModule,
     FlatpickrModule,
+    AvailableEffects,
     DemoModule,
+    EffectsModule,
     DemoUtilsModule,
     HttpClientModule,
     ReactiveFormsModule,
@@ -75,6 +77,8 @@ import { SharedService } from './shared/shared.service';
       provide: DateAdapter,
       useFactory: adapterFactory,
     }),
+    StoreModule.forRoot(reducerMapper),
+    EffectsModule.forRoot([AvailableEffects]),
     NgbModule,
     NgbModalModule
   ],
