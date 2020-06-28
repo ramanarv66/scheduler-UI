@@ -1,0 +1,172 @@
+<div class="container">
+
+  <div class="row">
+    <form class="container" #appointMentForm="ngForm">
+      <div class="form-row align-items-center">
+        <div class="col-md-4 mb-3">
+          <label class="mr-sm-1" for="inlineFormCustomSelect">Doctor Details</label>
+          <select class="custom-select mr-sm-1" id="inlineFormCustomSelect" name="doctorName"
+            [(ngModel)]="appointment.doctorName">
+
+            <option *ngFor="let doctor of doctors" [value]="doctor.name">
+              {{doctor.name}}</option>
+
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <!-- <input type="text" class="form-control" #username="ngModel" #username1 name="username"
+        [(ngModel)]="appointment.username" required>
+
+      <small *ngIf="username.invalid && username.touched" class="text text-danger">User name cannot be Empty!!</small> -->
+        <div class="col-md-4 mb-3">
+          <label for="validationDefault01">Patient Name</label>
+          <input type="text" class="form-control" id="validationDefault01" placeholder="Patient Name"
+            #patientname="ngModel" #patientname1 name="patientname" [(ngModel)]="appointment.patientName" required>
+        </div>
+
+      </div>
+      <div class="form-row">
+        <div class="col-md-4 mb-3">
+          <label for="validationDefault03">Email</label>
+          <input type="text" class="form-control" id="validationDefault03" placeholder="Email" #email="ngModel" #email1
+            name="email" [(ngModel)]="appointment.email" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col-md-4 mb-3">
+          <label for="validationDefault03">MobileNumber</label>
+          <input type="text" class="form-control" id="validationDefault03" placeholder="Mobile Number"
+            #mobileNumber="ngModel" #mobile1 name="mobile" [(ngModel)]="appointment.mobileNumber" required>
+        </div>
+
+      </div>
+      <!--
+      <div class="form-row">
+        <div class="col-md-4 mb-3">
+          <label for="validationDefault03">Date</label>
+          <input type="date" class="form-control" id="validationDefault03" placeholder="Select Date" #username="ngModel"
+            #date1 name="date" [(ngModel)]="appointment.date" required>
+        </div>
+
+      </div> -->
+      <!-- <div class="form-check" *ngFor="let bookingType of bookingTypes">
+        <input type="radio" name="bookingType" ngModel [value]="bookingType"
+          [(ngModel)]="appointment.bookingType">{{bookingType}}
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+        <label class="form-check-label" for="exampleRadios1">
+          Default radio
+        </label>
+      </div> -->
+
+      <div class="form-check form-check-inline" *ngFor="let bookingType of bookingTypes">
+        <input class="form-check-input" [(ngModel)]="appointment.bookingType" type="radio" name="exampleRadios"
+          value={{bookingType}} checked>
+        <label class="form-check-label" for="exampleRadios1">
+          {{bookingType}}
+        </label>
+      </div>
+      <br />
+      <br />
+      <label for="validationDefault03">Available Timings</label>
+      <div class="form-row">
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Choose a date</mat-label>
+          <!-- if we want saturday and sunday off then un comment below code -->
+          <!-- <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" [matDatepickerFilter]="myFilter"
+            (dateChange)="selectedDate('change', $event)"> -->
+
+          <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker"
+            (dateChange)="selectedDate('change', $event)">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <div *ngIf="showSlots">
+          <section>
+            <div class="example-label">Morning</div>
+            <div class="example-button-row">
+              <button mat-raised-button color="primary" (click)="appointmentClickE($event)" [disabled]="flag10AM"
+                [title]="!flag10AM?'This Slot is Available':'This Slot is Already Booked'">10:00AM</button>
+              <button mat-raised-button color="primary" (click)="appointmentClickE($event)"
+                [title]="!flag1030AM?'This Slot is Available':'This Slot is Already Booked'"
+                [disabled]="flag1030AM">10:30AM</button>
+              <button mat-raised-button color="primary" (click)="appointmentClickE($event)"
+                [title]="!flag11AM?'This Slot is Available':'This Slot is Already Booked'"
+                [disabled]="flag11AM">11:00AM</button>
+              <button mat-raised-button color="primary" (click)="appointmentClickE($event)"
+                [title]="!flag1130AM?'This Slot is Available':'This Slot is Already Booked'"
+                [disabled]="flag1130AM">11:30AM</button>
+              <button mat-raised-button color="primary" (click)="appointmentClickE($event)"
+                [title]="!flag12PM?'This Slot is Available':'This Slot is Already Booked'"
+                [disabled]="flag12PM">12:00PM</button>
+              <button mat-raised-button color="primary" (click)="appointmentClickE($event)"
+                [title]="!flag1230PM?'This Slot is Available':'This Slot is Already Booked'"
+                [disabled]="flag1230PM">12:30PM</button>
+            </div>
+          </section>
+          <mat-divider></mat-divider>
+          <section>
+            <div class="example-label">Afternoon</div>
+            <div class="example-button-row">
+
+              <button mat-raised-button color="accent" (click)="appointmentClickE($event)" [disabled]="flag2PM"
+                matTooltip="Info about the action">02:00PM</button>
+              <button mat-raised-button color="accent" (click)="appointmentClickE($event)" [disabled]="flag230PM"
+                matTooltip="Info about the action">02:30PM</button>
+              <button mat-raised-button color="accent" (click)="appointmentClickE($event)"
+                [disabled]="flag3PM">03:00PM</button>
+              <button mat-raised-button color="accent" (click)="appointmentClickE($event)"
+                [disabled]="flag430PM">04:30PM</button>
+              <button mat-raised-button color="accent" (click)="appointmentClickE($event)"
+                [disabled]="flag5PM">05:00PM</button>
+              <button mat-raised-button color="accent" (click)="appointmentClickE($event)"
+                [disabled]="flag530PM">05:30PM</button>
+
+
+            </div>
+          </section>
+          <mat-divider></mat-divider>
+          <section>
+            <div class="example-label">Evening</div>
+            <div class="example-button-row">
+
+
+              <button mat-raised-button color="warn" matTooltip="Info about the action"
+                (click)="appointmentClickE($event)" [disabled]="flag6PM">06:00PM</button>
+              <button mat-raised-button color="warn" (click)="appointmentClickE($event)"
+                [disabled]="flag630PM">06:30PM</button>
+              <button mat-raised-button color="warn" (click)="appointmentClickE($event)"
+                [disabled]="flag7PM">07:00PM</button>
+              <button mat-raised-button color="warn" (click)="appointmentClickE($event)"
+                [disabled]="flag730PM">07:30PM</button>
+              <button mat-raised-button color="warn" (click)="appointmentClickE($event)"
+                [disabled]="flag8PM">08:00PM</button>
+              <button mat-raised-button color="warn" (click)="appointmentClickE($event)"
+                [disabled]="flag830PM">08:30PM</button>
+
+
+            </div>
+          </section>
+          <mat-divider></mat-divider>
+        </div>
+      </div>
+      <div>
+        <br />
+        <div class="form-row">
+          <!-- <button class="btn btn-primary" (click)="bookAppointment();appointMentForm.reset()"
+            [disabled]="appointMentForm.invalid">Book Appointment</button> -->
+          <button class="btn btn-primary" (click)="bookAppointment()">Book Appointment</button>
+        </div>
+      </div>
+    </form>
+
+  </div>
+  <div class="row">
+
+
+  </div>
+</div>

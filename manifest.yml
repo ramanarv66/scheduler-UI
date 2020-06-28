@@ -1,0 +1,7 @@
+---
+applications:
+- name: schedulerv1
+  memory: 200M
+  buildpack: staticfile_buildpack
+  instances: 1
+  

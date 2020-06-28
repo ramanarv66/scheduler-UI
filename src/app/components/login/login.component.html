@@ -1,0 +1,39 @@
+<h5>Login Component</h5>
+<form [formGroup]="loginForm" class="container">
+  <div class=" col-md-6">
+    <div class="form-group">
+      <label for="username">UserName</label>
+      <input type="text" name="username" class="form-control" formControlName='username' required>
+      <!-- <small *ngIf="username1.invalid && username1.touched" class="text text-danger">Username required</small> -->
+      <div class="text text-danger"
+        *ngIf="this.loginForm.controls.username.invalid && this.loginForm.controls.username.touched">
+        <small> Enter
+          Valid
+          UserName </small></div>
+      <label for="password">Password</label>
+      <input type="password" name="password" class="form-control" formControlName='password' required>
+      <div class="text text-danger"
+        *ngIf="this.loginForm.controls.password.invalid && this.loginForm.controls.password.touched">
+        <small> Enter
+
+          Password </small></div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-md-6">
+        <button class="btn btn-success" (click)="login()">Login</button>
+      </div>
+    </div>
+  </div>
+</form>
+
+<br />
+<div class="row col-md-6" *ngIf="invalidLogin" style="text-align: center;">
+  <small class="text text-danger">Invalid Credentials/Login Details</small>
+</div>
+<div class="text-center text-primary" *ngIf="showSpinner">
+  <div class="spinner-border" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>
